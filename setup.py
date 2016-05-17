@@ -1,6 +1,9 @@
 # coding: utf-8
 
 from __future__ import with_statement
+
+import sys
+
 from setuptools import setup
 
 
@@ -18,6 +21,10 @@ def get_long_description():
             descr.append(f.read())
     return '\n\n'.join(descr)
 
+if sys.version_info < (3, 3):
+    install_requires = ['faulthandler']
+else:
+    install_requires = []
 
 setup(
     name='nose-faulthandler',
@@ -31,7 +38,7 @@ setup(
     license='MIT',
     py_modules=['nose_faulthandler'],
     zip_safe=False,
-    install_requires=['faulthandler'],
+    install_requires=install_requires,
     entry_points={
         'nose.plugins': [
             'nose_faulthandler = nose_faulthandler:FaultHandler',
