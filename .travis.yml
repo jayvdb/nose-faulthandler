@@ -9,3 +9,5 @@ python:
   - nightly
 script:
   - python setup.py install
+  - pip install flake8
+  - flake8 .
